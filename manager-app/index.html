@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>图书收藏</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: sans-serif; max-width: 480px; margin: 24px auto; padding: 0 16px; }
+    li.done { text-decoration: line-through; color: #999; }
+    .del { margin-left: 12px; cursor: pointer; }
+    .tip { color: #c00; font-size: 14px; min-height: 20px; }
+    .filters { margin: 12px 0; }
+    .filters button { margin-right: 8px; }
+  </style>
+</head>
+<body>
+  <h1>图书收藏</h1>
+  <form id="add-form">
+    <div style="display: flex; flex-direction: column; max-width: 300px; gap: 20px;">
+			<input type="text" id="book-name-input" placeholder="书名是什么？">
+			<input type="text" id="book-author-input" placeholder="作者是谁？">
+			<input type="text" id="book-rating-input" placeholder="评分多少？">
+			<button type="submit">添加</button>
+		</div>
+  </form>
+  <p class="tip" id="tip"></p>
+  <ul id="book-list"></ul>
+
+  <script src="app.js"></script>
+</body>
+</html>
