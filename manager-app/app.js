@@ -5,7 +5,7 @@ const name_input   = document.querySelector("#book-name-input")
 const author_input = document.querySelector("#book-author-input")
 const rating_input = document.querySelector("#book-rating-input")
 
-let books = []  // JSON.parse(localStorage.getItem('books') || '[]');
+let books = JSON.parse(localStorage.getItem('books') || '[]')
 
 const render = () => {
     list.innerHTML = ''
@@ -24,13 +24,18 @@ const render = () => {
         change_btn.addEventListener('click', () => {
             book.name   = prompt("重新输入书名：")
             book.author = prompt("重新输入作者：") 
-            book.rating = prompt("重新输入评分：")
+            let rating  = prompt("重新输入评分：") 
+            while (Number.isNaN(Number(rating))) rating = prompt("评分应为数字，重新输入评分：")
+            book.rating = rating
 
+            save()
             render()
         })
         delete_btn.textContent = '删除'
         delete_btn.addEventListener('click', () => {
             book.show = false
+
+            save()
             render()
         })
         li.textContent = `《${book.name}》 | 作者: ${book.author} | 评分: ${book.rating}   `
@@ -40,7 +45,7 @@ const render = () => {
     })
 }
 
-// const save = () => localStorage.setItem('books', JSON.stringify(books));
+const save = () => localStorage.setItem('books', JSON.stringify(books));
 
 form.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -72,7 +77,8 @@ form.addEventListener("submit", (e) => {
     author_input.value = "";
     rating_input.value = "";
 
-    render();
-});
+    save()
+    render()
+})
 
-render();
+render()
